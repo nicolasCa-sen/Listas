@@ -23,16 +23,51 @@ public class LinkedList <T>{
 
     }
 
+    /**
+     * Método que agrega un nodo despues de otro nodo (que existe)
+     * Precondicion. La lista contiene nodos
+     * @param node El Node a partir del cual se agrega el nuevo
+     * @param info La informacion del objeto para crear el nuevo nodo
+     */
     public void addNodeAfterTo(Node<T> node, T info ){
+        Node<T> nodeNew = new Node<>(info);
+        nodeNew.setNext( node.getNext());
+        node.setNext( nodeNew);
 
     }
 
     public void addNodeBeforeTo(Node<T> node, T info ){
-
+        if ( node == head ){
+            addFirst( info );
+        }else{
+            Node<T> nodeNew = new Node<>( info );
+            Node<T> aux = head;
+            while( aux.getNext() != node ){
+                aux = aux.getNext();
+            }
+            nodeNew.setNext( aux.getNext());
+            aux.setNext( nodeNew );
+        }
     }
 
     public void addNodeSorted(T info){
-
+        if( isEmpty()){
+            head = new Node<>(info);
+        }else{
+            Node<T> node = new Node<>(info);
+            Node<T> act = head;
+            Node<T> ant = null;
+            while( act != null && comparator.compare( node.getInfo(), act.getInfo()) > 0 ){
+                ant = act;
+                act = act.getNext();
+            }
+            if( ant == null ){
+                head = node;
+            }else{
+                ant.setNext( node );
+            }
+            node.setNext( act );
+        }
     }
 
     public Node<T> findNode( T node ){
