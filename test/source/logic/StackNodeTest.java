@@ -1,5 +1,6 @@
-package logic;
+package source.logic;
 
+import logic.StackNode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,7 +9,7 @@ class StackNodeTest {
 
     @Test
     void isEmpty() {
-        StackNode<String> st = new StackNode<>( (obj1,obj2) -> obj1.compareTo(obj2));
+        StackNode<String> st = new StackNode<>( (obj1, obj2) -> obj1.compareTo(obj2));
         assertTrue( st.isEmpty());
         st.push("Hola");
         assertFalse( st.isEmpty());
